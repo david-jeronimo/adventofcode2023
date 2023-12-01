@@ -1,0 +1,9 @@
+.stack-work/
+.idea
+files/
+out/
+test/
+stack.yaml.lock
+adventofcode2023.iml
+CHANGELOG.md
+*~
