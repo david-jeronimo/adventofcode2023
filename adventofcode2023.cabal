@@ -26,6 +26,7 @@ source-repository head
 library
   exposed-modules:
       Aoc01
+      Aoc02
       Lib
   other-modules:
       Paths_adventofcode2023
@@ -36,6 +37,7 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , containers
     , extra
     , text
     , timeit
@@ -53,6 +55,7 @@ executable adventofcode2023-exe
   build-depends:
       adventofcode2023
     , base >=4.7 && <5
+    , containers
     , extra
     , text
     , timeit
@@ -71,6 +74,7 @@ test-suite adventofcode2023-test
   build-depends:
       adventofcode2023
     , base >=4.7 && <5
+    , containers
     , extra
     , text
     , timeit
