@@ -1,11 +1,11 @@
-import Aoc02
+import Aoc03
 import Lib (Part(..), Text)
 import qualified Data.Text.IO as TIO
 import Control.Applicative (liftA2)
 import System.TimeIt
 
 main :: IO ()
-main = timeItNamed "Total" $ runDay parseInput solution "02"
+main = timeItNamed "Total" $ runDay parseInput solution "03"
 
 runDay::(Show a, Show b) => (Text -> a) -> (Part -> a -> b)  -> String -> IO()
 runDay parse sol dayStr = sequence_ $ liftA2 (run parse sol) (fileName <$> ["sample","input"]) [PartOne,PartTwo]
