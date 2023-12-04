@@ -28,6 +28,7 @@ library
       Aoc01
       Aoc02
       Aoc03
+      Aoc04
       Lib
   other-modules:
       Paths_adventofcode2023
