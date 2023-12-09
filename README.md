@@ -10,3 +10,4 @@
 | 6   | [Wait for it](https://adventofcode.com/2023/day/6)                     | 0.004          | 0.142          | [Aoc06.hs](src/Aoc06.hs) |
 | 7   | [Camel cards](https://adventofcode.com/2023/day/7)                     | 0.043          | 0.044          | [Aoc07.hs](src/Aoc07.hs) |
 | 8   | [Haunted wasteland](https://adventofcode.com/2023/day/8)               | 0.010          | 0.028          | [Aoc08.hs](src/Aoc08.hs) |
+| 9   | [Mirage maintenance](https://adventofcode.com/2023/day/9)              | 0.016          | 0.016          | [Aoc09.hs](src/Aoc09.hs) |
