@@ -11,3 +11,5 @@
 | 7   | [Camel cards](https://adventofcode.com/2023/day/7)                     | 0.043          | 0.044          | [Aoc07.hs](src/Aoc07.hs) |
 | 8   | [Haunted wasteland](https://adventofcode.com/2023/day/8)               | 0.010          | 0.028          | [Aoc08.hs](src/Aoc08.hs) |
 | 9   | [Mirage maintenance](https://adventofcode.com/2023/day/9)              | 0.016          | 0.016          | [Aoc09.hs](src/Aoc09.hs) |
+| 10  | [Pipe maze](https://adventofcode.com/2023/day/10)                      | 0.031          | 0.276          | [Aoc10.hs](src/Aoc10.hs) |
+| 11  | [Cosmic expansion](https://adventofcode.com/2023/day/11)               | 0.007          | 0.007          | [Aoc11.hs](src/Aoc11.hs) |
