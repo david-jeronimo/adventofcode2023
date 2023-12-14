@@ -32,7 +32,6 @@ foldH::Part -> Pattern -> Int -> Bool
 foldH part (pattern, (_, maxY)) mirrorY = case part of
       PartOne -> reflection' == reflection
       PartTwo -> ((==1) . S.size . S.unions $ [(S.\\), flip (S.\\)] <*> pure reflection <*> pure reflection')
-                 && (elem (S.size (reflection `S.intersection` reflection')) . map S.size $ [orig, reflection])
   where (reflection,orig) = S.partition ((>= mirrorY) . snd) . S.filter inMirror $ pattern
         reflection' = (S.map (second (\y -> 2 * mirrorY - y - 1)) orig)
         inMirror (_,y) = y >= (mirrorY - reflectionSize) && y < (mirrorY + reflectionSize)
