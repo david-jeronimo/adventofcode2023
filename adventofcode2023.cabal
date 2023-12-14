@@ -36,6 +36,9 @@ library
       Aoc09
       Aoc10
       Aoc11
+      Aoc12
+      Aoc13
+      Aoc14
       Lib
   other-modules:
       Paths_adventofcode2023
@@ -48,6 +51,7 @@ library
       base >=4.7 && <5
     , containers
     , extra
+    , mtl
     , split
     , text
     , timeit
@@ -67,6 +71,7 @@ executable adventofcode2023-exe
     , base >=4.7 && <5
     , containers
     , extra
+    , mtl
     , split
     , text
     , timeit
@@ -87,6 +92,7 @@ test-suite adventofcode2023-test
     , base >=4.7 && <5
     , containers
     , extra
+    , mtl
     , split
     , text
     , timeit
