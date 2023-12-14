@@ -33,14 +33,12 @@ moveCycle = map reverse . rotate . rotate . rotate . moveAll . transpose
 
 moveAll::[[Rock]] -> [[Rock]]
 moveAll = map (concatMap moveSegment . split (keepDelimsL $ oneOf [Cube]))
-
-moveSegment::[Rock] -> [Rock]
-moveSegment (Cube:rest) = Cube : replicate (cntRounded rest) Rounded ++ replicate (length rest - cntRounded rest) None
-moveSegment cubes = replicate (cntRounded cubes) Rounded ++ replicate (length cubes - cntRounded cubes) None
+  where moveSegment (Cube:rest) = Cube : replicate (cntRounded rest) Rounded ++ replicate (length rest - cntRounded rest) None
+        moveSegment cubes = replicate (cntRounded cubes) Rounded ++ replicate (length cubes - cntRounded cubes) None
 
 cntRounded::[Rock] -> Int
 cntRounded = length . filter (== Rounded)
 
 findCycle::[Int]-> (Int,[Int])
-findCycle = fromJust . getFirst . mconcat . zipWith (curry (secondM segmentCycle)) [0..] . divvy 20 1
-  where segmentCycle segment = First . fmap fst $ listToMaybe [(a,b)|(a:b:_) <- liftA2 chunksOf [4..10] . pure $ segment, a == b]
+findCycle = fromJust . getFirst . foldMap First . zipWith (curry (secondM segmentCycle)) [0..] . divvy 20 1
+  where segmentCycle segment = listToMaybe [a | (a:b:_) <- liftA2 chunksOf [4..10] (pure segment), a == b]
