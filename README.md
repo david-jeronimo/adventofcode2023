@@ -13,3 +13,6 @@
 | 9   | [Mirage maintenance](https://adventofcode.com/2023/day/9)              | 0.016          | 0.016          | [Aoc09.hs](src/Aoc09.hs) |
 | 10  | [Pipe maze](https://adventofcode.com/2023/day/10)                      | 0.031          | 0.276          | [Aoc10.hs](src/Aoc10.hs) |
 | 11  | [Cosmic expansion](https://adventofcode.com/2023/day/11)               | 0.007          | 0.007          | [Aoc11.hs](src/Aoc11.hs) |
+| 12  | [Hot springs](https://adventofcode.com/2023/day/12)                    |                |                |                          |
+| 13  | [Point of incidence](https://adventofcode.com/2023/day/13)             | 0.018          | 0.023          | [Aoc13.hs](src/Aoc13.hs) |
+| 14  | [Parabolic reflector dish](https://adventofcode.com/2023/day/14)       | 0.007          | 0.934          | [Aoc14.hs](src/Aoc14.hs) |
