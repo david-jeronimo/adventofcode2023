@@ -40,6 +40,7 @@ library
       Aoc13
       Aoc14
       Aoc15
+      Aoc16
       Lib
   other-modules:
       Paths_adventofcode2023
