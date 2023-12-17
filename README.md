@@ -18,3 +18,4 @@
 | 14  | [Parabolic reflector dish](https://adventofcode.com/2023/day/14)       | 0.007          | 0.934          | [Aoc14.hs](src/Aoc14.hs) |
 | 15  | [Lens library](https://adventofcode.com/2023/day/15)                   | 0.004          | 0.015          | [Aoc15.hs](src/Aoc15.hs) |
 | 16  | [The floor will be lava](https://adventofcode.com/2023/day/16)         | 0.027          | 4.244          | [Aoc16.hs](src/Aoc16.hs) |
+| 16  | [Clumsy crucible](https://adventofcode.com/2023/day/17)                | 8.121          | 35.705         | [Aoc17.hs](src/Aoc17.hs) |
