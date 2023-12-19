@@ -19,5 +19,5 @@
 | 15  | [Lens library](https://adventofcode.com/2023/day/15)                   | 0.004          | 0.015          | [Aoc15.hs](src/Aoc15.hs) |
 | 16  | [The floor will be lava](https://adventofcode.com/2023/day/16)         | 0.027          | 4.244          | [Aoc16.hs](src/Aoc16.hs) |
 | 17  | [Clumsy crucible](https://adventofcode.com/2023/day/17)                | 8.121          | 35.705         | [Aoc17.hs](src/Aoc17.hs) |
-| 18  |                                                                        |                |                |                          |
+| 18  | [Lavaduct lagoon](https://adventofcode.com/2023/day/18)                | 1.299          | 16.775         | [Aoc18.hs](src/Aoc18.hs) | 
 | 19  | [Aplenty](https://adventofcode.com/2023/day/19)                        | 0.016          | 0.016          | [Aoc19.hs](src/Aoc19.hs) |

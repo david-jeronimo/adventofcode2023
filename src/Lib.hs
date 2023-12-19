@@ -12,4 +12,3 @@ class (Eq a, Bounded a, Enum a) => CyclicEnum a where
   succC::a -> a
   succC a | a == maxBound = minBound
           | otherwise     = succ a
-            

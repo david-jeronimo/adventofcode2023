@@ -42,6 +42,7 @@ library
       Aoc15
       Aoc16
       Aoc17
+      Aoc18
       Aoc19
       Lib
   other-modules:
