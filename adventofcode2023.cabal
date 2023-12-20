@@ -44,6 +44,7 @@ library
       Aoc17
       Aoc18
       Aoc19
+      Aoc20
       Lib
   other-modules:
       Paths_adventofcode2023
