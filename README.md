@@ -22,3 +22,4 @@
 | 18  | [Lavaduct lagoon](https://adventofcode.com/2023/day/18)                | 1.299          | 16.775         | [Aoc18.hs](src/Aoc18.hs) | 
 | 19  | [Aplenty](https://adventofcode.com/2023/day/19)                        | 0.016          | 0.016          | [Aoc19.hs](src/Aoc19.hs) |
 | 20  | [Pulse propagation](https://adventofcode.com/2023/day/20)              | 0.047          | 0.453          | [Aoc20.hs](src/Aoc20.hs) |
+| 21  | [Step counter](https://adventofcode.com/2023/day/21)                   | 0.188          | 102.531        | [Aoc21.hs](src/Aoc21.hs) |

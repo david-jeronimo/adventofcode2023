@@ -1,4 +1,4 @@
-import Aoc20
+import Aoc21
 import Lib (Part(..), Text)
 import qualified Data.Text.IO as TIO
 import Control.Applicative (liftA2)
@@ -7,7 +7,7 @@ import Text.Printf
 import Control.Monad.IO.Class (MonadIO(liftIO))
 
 main :: IO ()
-main = timeItNamed' "Total" $ runDay parseInput solution "20"
+main = timeItNamed' "Total" $ runDay parseInput solution "21"
 
 runDay::(Show a, Show b) => (Text -> a) -> (Part -> a -> b)  -> String -> IO()
 runDay parse sol dayStr = sequence_ $ liftA2 (run parse sol) (fileName <$> ["sample","input"]) [PartOne,PartTwo]
