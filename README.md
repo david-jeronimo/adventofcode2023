@@ -24,3 +24,4 @@
 | 20  | [Pulse propagation](https://adventofcode.com/2023/day/20)              | 0.047          | 0.453          | [Aoc20.hs](src/Aoc20.hs) |
 | 21  | [Step counter](https://adventofcode.com/2023/day/21)                   | 0.188          | 102.531        | [Aoc21.hs](src/Aoc21.hs) |
 | 22  | [Sand slabs](https://adventofcode.com/2023/day/22)                     | 0.141          | 4.156          | [Aoc22.hs](src/Aoc22.hs) |
+| 23  | [A long walk](https://adventofcode.com/2023/day/23)                    | 0.312          | 6.625          | [Aoc23.hs](src/Aoc23.hs) |
