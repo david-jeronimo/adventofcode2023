@@ -1,4 +1,4 @@
-import Aoc23
+import Aoc25
 import Lib (Part(..), Text)
 import qualified Data.Text.IO as TIO
 import Control.Applicative (liftA2)
@@ -7,10 +7,10 @@ import Text.Printf
 import Control.Monad.IO.Class (MonadIO(liftIO))
 
 main :: IO ()
-main = timeItNamed' "Total" $ runDay parseInput solution "23"
+main = timeItNamed' "Total" $ runDay parseInput solution "25"
 
 runDay::(Show a, Show b) => (Text -> a) -> (Part -> a -> b)  -> String -> IO()
-runDay parse sol dayStr = sequence_ $ liftA2 (run parse sol) (fileName <$> ["sample","input"]) [PartOne,PartTwo]
+runDay parse sol dayStr = sequence_ $ liftA2 (run parse sol) (fileName <$> ["input"]) [PartOne]
   where fileName suffix = "files/aoc" <> dayStr <> "." <> suffix <> ".txt"
 
 readInput:: (Show a) => (Text -> a) -> String -> IO a

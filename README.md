@@ -25,3 +25,5 @@
 | 21  | [Step counter](https://adventofcode.com/2023/day/21)                   | 0.188          | 102.531        | [Aoc21.hs](src/Aoc21.hs) |
 | 22  | [Sand slabs](https://adventofcode.com/2023/day/22)                     | 0.141          | 4.156          | [Aoc22.hs](src/Aoc22.hs) |
 | 23  | [A long walk](https://adventofcode.com/2023/day/23)                    | 0.312          | 6.625          | [Aoc23.hs](src/Aoc23.hs) |
+| 24  | [Never tell me the odds](https://adventofcode.com/2023/day/24)         | 0.016          |                | [Aoc24.hs](src/Aoc24.hs) |
+| 25  | [Snowverload](https://adventofcode.com/2023/day/25)                    | 0.531          |                | [Aoc25.hs](src/Aoc25.hs) |

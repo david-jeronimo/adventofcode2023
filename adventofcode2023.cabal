@@ -48,6 +48,8 @@ library
       Aoc21
       Aoc22
       Aoc23
+      Aoc24
+      Aoc25
       Lib
   other-modules:
       Paths_adventofcode2023
