@@ -11,7 +11,7 @@ import Data.Bifunctor (bimap)
 import Data.Maybe (fromJust)
 
 data Mapping = Mapping{len::Int,source::Int,dest::Int} deriving Show
-data Range = Range{from::Int,to::Int} deriving Show
+data Range = Range{from::Int,to::Int}
 
 parseInput::Text -> ([Int],[[Mapping]])
 parseInput = bimap parseSeeds (map parseMappings) . fromJust . uncons . T.splitOn "\n\n"

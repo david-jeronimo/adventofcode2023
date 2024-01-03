@@ -36,13 +36,13 @@ parseInput txt = (parseWorld, ((pred . T.length . head) &&& pred . length) . T.l
 solution::Part -> (World, MaxXY) -> Int
 solution part (world, maxXY@(maxX,maxY)) = case part of
       PartOne -> energizedTiles ((0,0),E)
-      PartTwo -> maximum . map energizedTiles . concat $ startTiles
+      PartTwo -> maximum . map energizedTiles $ startTiles
   where energizedTiles beam@(pos,_) = S.size . S.insert pos . S.map fst . visitedPositions $ (S.singleton beam, S.empty)
         visitedPositions = snd . fromJust . find (null . fst) . iterate (beamSteps world maxXY)
-        startTiles = [map ((,S) . (,0))    [0..maxX],
-                      map ((,N) . (,maxY)) [0..maxX],
-                      map ((,E) . (0,))    [0..maxY],
-                      map ((,W) . (maxX,)) [0..maxY]]
+        startTiles = concat [map ((,S) . (,0))    [0..maxX],
+                             map ((,N) . (,maxY)) [0..maxX],
+                             map ((,E) . (0,))    [0..maxY],
+                             map ((,W) . (maxX,)) [0..maxY]]
 
 beamSteps::World -> MaxXY -> (Set Beam, Set Beam) -> (Set Beam, Set Beam)
 beamSteps world (maxX,maxY) (beams, visited) = (beams' S.\\ visited, visited `S.union` beams')

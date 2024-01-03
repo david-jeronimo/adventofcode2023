@@ -24,15 +24,15 @@ solution part = fmap sum . traverse (patternPoints part)
 
 patternPoints::Part -> Pattern -> Maybe Int
 patternPoints part pattern@(_, (maxX, maxY)) = pointsHorizontal <|> pointsVertical
-  where pointsHorizontal = (*100) <$> find (foldH part pattern) [1..maxY]
-        pointsVertical = find (foldH part transposedPattern) [1..maxX]
+  where pointsHorizontal  = (*100) <$> find (foldH part pattern) [1..maxY]
+        pointsVertical    = find (foldH part transposedPattern) [1..maxX]
         transposedPattern = bimap (S.map swap) swap pattern
 
 foldH::Part -> Pattern -> Int -> Bool
 foldH part (pattern, (_, maxY)) mirrorY = case part of
       PartOne -> reflection' == reflection
-      PartTwo -> ((==1) . S.size . S.unions $ [(S.\\), flip (S.\\)] <*> pure reflection <*> pure reflection')
-  where (reflection,orig) = S.partition ((>= mirrorY) . snd) . S.filter inMirror $ pattern
-        reflection' = (S.map (second (\y -> 2 * mirrorY - y - 1)) orig)
-        inMirror (_,y) = y >= (mirrorY - reflectionSize) && y < (mirrorY + reflectionSize)
-        reflectionSize = min mirrorY (maxY - mirrorY + 1)
+      PartTwo -> (==1) . S.size . S.unions $ [(S.\\), flip (S.\\)] <*> pure reflection <*> pure reflection'
+  where (reflection,image) = S.partition ((>= mirrorY) . snd) . S.filter inMirror $ pattern
+        reflection'        = S.map (second (\y -> 2 * mirrorY - y - 1)) image
+        inMirror (_,y)     = y >= (mirrorY - reflectionSize) && y < (mirrorY + reflectionSize)
+        reflectionSize     = min mirrorY (maxY - mirrorY + 1)

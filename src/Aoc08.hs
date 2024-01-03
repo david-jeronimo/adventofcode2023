@@ -22,8 +22,8 @@ solution part (directions,network) = case part of
       PartOne -> elemIndex "ZZZ" . applyMovements $ "AAA"
       PartTwo -> foldl1 lcm <$> traverse (findIndex endsInZ . applyMovements) initNodes
   where applyMovements = map snd . iterate (move network) . (cycle directions,)
-        endsInZ = (=='Z') . T.last
-        initNodes = filter ((=='A') . T.last) . M.keys $ network
+        endsInZ = T.isSuffixOf "Z"
+        initNodes = filter (T.isSuffixOf "A") . M.keys $ network
 
 move::Network -> ([Dir],Text) -> ([Dir],Text)
 move network (dir,location) = (tail dir, move' (head dir) $ network M.! location)

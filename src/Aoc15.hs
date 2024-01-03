@@ -36,7 +36,7 @@ boxPower boxId = sum . map focusingPower . zipWith setRelativeIndex [1..] . sort
 
 reduceAndGroupByBox::[Operation] -> [(BoxId, [Operation])]
 reduceAndGroupByBox = groupOnKey (hash . lens) . sortOn (hash . lens) . reduceOperations
-  where reduceOperations = filter (isJust . value) . map mconcat . groupSortOn lens . reverse 
+  where reduceOperations = filter (isJust . value) . map mconcat . groupSortOn lens . reverse
 
 hash::Text -> BoxId
 hash = foldl hash' 0 . map fromEnum . T.unpack

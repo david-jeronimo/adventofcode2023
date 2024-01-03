@@ -19,11 +19,19 @@
 | 15  | [Lens library](https://adventofcode.com/2023/day/15)                   | 0.004          | 0.015          | [Aoc15.hs](src/Aoc15.hs) |
 | 16  | [The floor will be lava](https://adventofcode.com/2023/day/16)         | 0.027          | 4.244          | [Aoc16.hs](src/Aoc16.hs) |
 | 17  | [Clumsy crucible](https://adventofcode.com/2023/day/17)                | 8.121          | 35.705         | [Aoc17.hs](src/Aoc17.hs) |
-| 18  | [Lavaduct lagoon](https://adventofcode.com/2023/day/18)                | 1.299          | 16.775         | [Aoc18.hs](src/Aoc18.hs) | 
+| 18  | [Lavaduct lagoon](https://adventofcode.com/2023/day/18)                | 0.906          | 10.453         | [Aoc18.hs](src/Aoc18.hs) | 
 | 19  | [Aplenty](https://adventofcode.com/2023/day/19)                        | 0.016          | 0.016          | [Aoc19.hs](src/Aoc19.hs) |
-| 20  | [Pulse propagation](https://adventofcode.com/2023/day/20)              | 0.047          | 0.453          | [Aoc20.hs](src/Aoc20.hs) |
-| 21  | [Step counter](https://adventofcode.com/2023/day/21)                   | 0.188          | 102.531        | [Aoc21.hs](src/Aoc21.hs) |
-| 22  | [Sand slabs](https://adventofcode.com/2023/day/22)                     | 0.141          | 4.156          | [Aoc22.hs](src/Aoc22.hs) |
+| 20  | [Pulse propagation](https://adventofcode.com/2023/day/20)              | 0.047          | 0.156          | [Aoc20.hs](src/Aoc20.hs) |
+| 21  | [Step counter](https://adventofcode.com/2023/day/21)                   | 0.141          | 102.531        | [Aoc21.hs](src/Aoc21.hs) |
+| 22  | [Sand slabs](https://adventofcode.com/2023/day/22)                     | 0.109          | 3.328          | [Aoc22.hs](src/Aoc22.hs) |
 | 23  | [A long walk](https://adventofcode.com/2023/day/23)                    | 0.312          | 6.625          | [Aoc23.hs](src/Aoc23.hs) |
 | 24  | [Never tell me the odds](https://adventofcode.com/2023/day/24)         | 0.016          |                | [Aoc24.hs](src/Aoc24.hs) |
 | 25  | [Snowverload](https://adventofcode.com/2023/day/25)                    | 0.531          |                | [Aoc25.hs](src/Aoc25.hs) |
+
+# How to run
+* Install [Stack](https://docs.haskellstack.org/en/stable/#how-to-install-stack)
+* Amend first line in `Main.hs` to import a solution. For instance: `import Aoc01`
+* Amend day in line 10 of `Main.hs`: `main = timeItNamed' "Total" $ runDay parseInput solution "01"`
+* Add input files under `files` folder: `aoc01.input.txt`, `aoc02.input.txt`, etc.
+* stack build
+* stack exec adventofcode2023-exe

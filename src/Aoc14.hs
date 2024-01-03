@@ -5,14 +5,14 @@ module Aoc14 (parseInput, solution) where
 
 import Lib (Part(..), Text)
 import qualified Data.Text as T
-import Data.List.Extra (transpose)
+import Data.List.Extra (transpose, sort)
 import Data.List.Split (split, oneOf, keepDelimsL, divvy, chunksOf)
 import Data.Tuple.Extra (secondM)
 import Data.Maybe (fromJust, listToMaybe)
 import Data.Monoid (First(..))
 import Control.Applicative (liftA2)
 
-data Rock = Cube | Rounded | None deriving (Show, Eq)
+data Rock = Cube | Rounded | None deriving (Show, Eq, Ord)
 
 parseInput::Text -> [[Rock]]
 parseInput = map (map toRock . T.unpack) . T.lines
@@ -25,6 +25,7 @@ solution part mat = case part of
       PartOne -> totalLoad . transpose . moveAll . transpose $ mat
       PartTwo -> cycl !! ((1_000_000_000 - cycleStart) `rem` length cycl)
   where totalLoad = sum . zipWith (*) [1..] . map cntRounded . reverse
+        cntRounded = length . filter (== Rounded)
         (cycleStart, cycl) = findCycle . map totalLoad . iterate moveCycle $ mat
 
 moveCycle::[[Rock]] -> [[Rock]]
@@ -32,12 +33,7 @@ moveCycle = map reverse . rotate . rotate . rotate . moveAll . transpose
   where rotate = moveAll . transpose . map reverse
 
 moveAll::[[Rock]] -> [[Rock]]
-moveAll = map (concatMap moveSegment . split (keepDelimsL $ oneOf [Cube]))
-  where moveSegment (Cube:rest) = Cube : replicate (cntRounded rest) Rounded ++ replicate (length rest - cntRounded rest) None
-        moveSegment cubes = replicate (cntRounded cubes) Rounded ++ replicate (length cubes - cntRounded cubes) None
-
-cntRounded::[Rock] -> Int
-cntRounded = length . filter (== Rounded)
+moveAll = map (concatMap sort . split (keepDelimsL $ oneOf [Cube]))
 
 findCycle::[Int]-> (Int,[Int])
 findCycle = fromJust . getFirst . foldMap First . zipWith (curry (secondM segmentCycle)) [0..] . divvy 20 1

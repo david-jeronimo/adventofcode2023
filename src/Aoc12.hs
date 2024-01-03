@@ -53,7 +53,7 @@ arrangementsCached::[Spring] -> [Int] -> Int -> Int -> App Int
 arrangementsCached springs groups cnt dmgCnt = do
   cache <- get
   case cache M.!? cacheKey of
-    Just v -> return v
+    Just v  -> return v
     Nothing -> do
           v <- arrangements springs groups cnt dmgCnt
           modify $ M.insert cacheKey v

@@ -24,7 +24,7 @@ parseInput txt = (concatMap parseLineNumbers . zip [0..] . T.lines $ txt,symbols
 solution::Part -> ([Number],[Symbol]) -> Int
 solution part (numbers, symbols) = case part of 
     PartOne -> sum . map snd . filter (adjacentToSymbol symbolsSet) $ numbersAdj
-    PartTwo -> sum . S.map (adjacentToPos numbersAdj) $ gearPositions
+    PartTwo -> sum . S.map (adjacentToGear numbersAdj) $ gearPositions
   where numbersAdj = map (adjacentPositions &&& snd) numbers
         symbolsSet = S.fromList . map fst $ symbols
         gearPositions = S.fromList [pos | (pos,'*') <- symbols]
@@ -32,8 +32,8 @@ solution part (numbers, symbols) = case part of
 adjacentToSymbol:: Set Pos -> NumberAdj -> Bool
 adjacentToSymbol symbols = not . null . S.intersection symbols . fst
         
-adjacentToPos::[NumberAdj] -> Pos -> Int
-adjacentToPos numbers gearPos = case filter (S.member gearPos . fst) numbers of
+adjacentToGear::[NumberAdj] -> Pos -> Int
+adjacentToGear numbers gearPos = case filter (S.member gearPos . fst) numbers of
         [(_,n1),(_,n2)] -> n1 * n2
         _               -> 0
 

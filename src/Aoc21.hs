@@ -7,6 +7,7 @@ import Data.Set (Set)
 import qualified Data.Set as S
 import Data.Bifunctor (first,second)
 import Data.Tuple.Extra (both)
+
 type Pos = (Int,Int)
 
 parseInput::Text -> (Set Pos, Pos, Int)
@@ -21,7 +22,7 @@ solution part (rocks, start, width) = case part of
   where lens = map S.size . iterate (step2 width rocks) . S.singleton $ start
         (firstLens, increaseCycle) = findIncreaseCycle totalSteps width lens
         numIterations = (totalSteps `div` width) - length firstLens + 1
-        findNext ic (prev1,prev2) = (2 * prev1 - prev2 + ic,prev1)
+        findNext ic (prev1, prev2) = (2 * prev1 - prev2 + ic, prev1)
         totalSteps = 26501365
 
 findIncreaseCycle::Int -> Int -> [Int] -> ([Int],Int)

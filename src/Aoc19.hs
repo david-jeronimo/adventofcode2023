@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE TupleSections #-}
 
 module Aoc19 (parseInput, solution) where
 
@@ -13,7 +14,7 @@ import Data.Maybe (fromMaybe)
 import Data.Bifunctor (bimap)
 import Data.Monoid (First(..))
 
-data Prop     = X | M | A | S deriving (Show, Read, Eq, Ord)
+data Prop     = X | M | A | S deriving (Show, Read, Eq, Ord, Enum)
 data Result   = Accepted | Rejected deriving (Show, Eq)
 data Target   = TR Result | TW Text deriving (Show, Eq)
 data Rule     = Rule { prop::Prop, cmp::Ordering, val::Int, target::Target } deriving Show
@@ -39,10 +40,10 @@ parseInput = bimap (M.fromList . parseWorkflows) (map parsePart . drop 2 . T.lin
 solution::Part -> (Map Text Workflow, [PR]) -> Int
 solution part (workflows, parts) = case part of 
       PartOne -> sum . map points . filter ((== Accepted) . processPart workflows "in") $ parts
-      PartTwo -> sum . map sumCombinations $ combinations workflows ("in",initRange)
+      PartTwo -> sum . map sumCombinations $ combinations workflows ("in", initRange)
   where points = sum . M.elems
-        initRange = M.fromList [(X,(1,4000)),(M,(1,4000)),(A,(1,4000)),(S,(1,4000))]  
-        sumCombinations = product . map (\(a,b) -> b - a + 1) . M.elems 
+        initRange = M.fromList . map (,(1,4000)) . enumFrom $ X
+        sumCombinations = product . map (\(from,to) -> to - from + 1) . M.elems 
 
 processPart::Map Text Workflow -> Text -> PR -> Result
 processPart workflows wfTitle pr = case applyWorkflow (workflows!wfTitle) pr of
@@ -74,7 +75,8 @@ applyConstraint rng p (a,b) = updateRangeEntry $ rng ! p
   where updateRangeEntry (a1,b1) = M.insert p (max a1 a, min b1 b) rng
 
 rangesForRule::Bool -> Rule -> MinMax
-rangesForRule True  Rule{cmp=LT,..} = (minBound, val - 1)
-rangesForRule True  Rule{cmp=GT,..} = (val + 1, maxBound)
-rangesForRule False Rule{cmp=LT,..} = (val, maxBound)
-rangesForRule _     Rule{..}        = (minBound, val)
+rangesForRule success Rule{..} = case (success,cmp) of
+    (True,  LT) -> (minBound, val - 1)
+    (True,  GT) -> (val + 1, maxBound)
+    (False, LT) -> (val, maxBound)
+    _           -> (minBound, val)

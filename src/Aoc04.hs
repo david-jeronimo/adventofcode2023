@@ -16,12 +16,11 @@ parseInput txt = [Card (parse win) (parse own) | [_,win,own] <- map (T.split (`T
 
 solution::Part -> [Card] -> Int
 solution  = \case
-      PartOne -> sum . map cardPoints
+      PartOne -> sum . map (cardPoints . numMatches)
       PartTwo -> sum . foldr (accumCards . numMatches) []
-  where cardPoints card = case numMatches card of
-             0 -> 0
-             n -> 2^(n-1)
+  where cardPoints 0 = 0
+        cardPoints n = 2 ^ (n-1)
         numMatches Card{..} = length $ winning `intersect` owned
 
 accumCards::Int -> [Int] -> [Int]
-accumCards n rest = 1 + (sum . take n $ rest) : rest
+accumCards n rest = (:rest) . succ . sum . take n $ rest

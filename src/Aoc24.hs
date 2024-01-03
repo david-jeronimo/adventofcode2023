@@ -1,4 +1,5 @@
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE NumericUnderscores #-}
 
 module Aoc24 (parseInput, solution) where
 
@@ -8,7 +9,6 @@ import Data.List.Extra (tails)
 import Data.Tuple.Extra (both, second)
 
 data Hailstone = HS { pos::Pos, v::Pos } deriving (Show, Eq)
-data Dim = X | Y | Z deriving Show
 
 type Pos = (Int,Int,Int)
 
@@ -18,7 +18,7 @@ parseInput txt = [HS (x,y,z) (vx,vy,vz) | ([x,y,z],[vx,vy,vz]) <- map (toPos . s
 
 solution::Part -> [Hailstone] -> String
 solution PartOne hailstones = show $ length [(hs1,hs2) | (hs1:hss) <- tails hailstones, hs2 <- hss, intersectInTarget hs1 hs2]
-  where target = (200000000000000, 400000000000000)
+  where target = (200_000_000_000_000, 400_000_000_000_000)
         intersectInTarget hs1 hs2 = isInTarget ip && isValidIntersection hs1 ip && isValidIntersection hs2 ip
             where ip = intersectionPoint hs1 hs2
         isInTarget (x,y) = x >= fst target && x <= snd target && y >= fst target && y <= snd target
@@ -38,11 +38,11 @@ isValidIntersection (HS (x,y,_) (vx,vy,_)) (xc,yc)
 
 intersectionPoint::Hailstone -> Hailstone -> (Float, Float)
 intersectionPoint (HS (x1,y1,_) (vx1,vy1,_)) (HS (x2,y2,_) (vx2,vy2,_)) = (x,y)
-  where m1 = (fromIntegral vy1 / fromIntegral vx1)::Float
-        m2 = (fromIntegral vy2 / fromIntegral vx2)::Float
+  where m1 = fromIntegral vy1 / fromIntegral vx1
+        m2 = fromIntegral vy2 / fromIntegral vx2
         b1 = fromIntegral y1 + (fromIntegral x1 * (-m1))
         b2 = fromIntegral y2 + (fromIntegral x2 * (-m2))
-        x = ((b2 - b1) / (m1 - m2))::Float
+        x = (b2 - b1) / (m1 - m2)
         y = m1 * x + b1
 
 buildEquation::Hailstone -> Hailstone -> Hailstone -> Text

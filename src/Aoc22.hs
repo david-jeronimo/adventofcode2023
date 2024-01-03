@@ -5,6 +5,8 @@ module Aoc22 (parseInput, solution) where
 import Lib (Part(..), Text)
 import qualified Data.Text as T
 import Data.List.Extra (delete, sortOn, (\\), unfoldr)
+import Data.Maybe (mapMaybe)
+import Safe.Foldable (maximumDef)
 import Control.Applicative (liftA2)
 
 type Rng = (Int,Int)
@@ -14,22 +16,21 @@ parseInput::Text -> [Brick]
 parseInput txt = [Brick (x1,x2) (y1,y2) (z1,z2) | [x1,y1,z1,x2,y2,z2] <- map (map (read . T.unpack) . T.split (`T.elem` ",~")) . T.lines $ txt]
 
 solution::Part -> [Brick] -> Int
-solution part bricks = case part of
-    PartOne -> length . filter (canBeDisintegrated bricks') $ bricks'
-    PartTwo -> sum . map numDisintegrated $ bricks'
-  where bricks' = settleBricks bricks
-        numDisintegrated brick = sum $ unfoldr crumble (bricks', [brick])
+solution part = f . settleBricks
+  where f bricks = case part of
+          PartOne -> length . filter (canBeDisintegrated bricks) $ bricks
+          PartTwo -> sum . map numDisintegrated $ bricks
+            where numDisintegrated brick = sum $ unfoldr crumble (bricks, [brick])
 
 settleBricks::[Brick] -> [Brick]
-settleBricks = reverse . foldl fall [] . sortOn (fst . z)
-  where fall settled = (:settled) . brickFalls settled
+settleBricks = foldl fall [] . sortOn (fst . z)
+  where fall settled = (:settled) . settleBrick settled
 
-brickFalls::[Brick] -> Brick -> Brick
-brickFalls settledBricks fallingBrick@(Brick x1 y1 (z1a,z1b)) = Brick x1 y1 (maxZ + 1, maxZ + z1b - z1a + 1)
-    where maxZ | null settledBricks = 0
-               | otherwise          = maximum $ map zIfBelow settledBricks
-          zIfBelow brick@(Brick _ _ (_,zb)) | brick `isBelow` fallingBrick = zb
-                                            | otherwise    = 0
+settleBrick::[Brick] -> Brick -> Brick
+settleBrick settledBricks fallingBrick@(Brick _ _ (z1a,z1b)) = fallingBrick{z = (maxZ + 1, maxZ + z1b - z1a + 1)}
+    where maxZ = maximumDef 0 . mapMaybe zIfBelow $ settledBricks 
+          zIfBelow brick@(Brick _ _ (_,zb)) | brick `isBelow` fallingBrick = Just zb
+          zIfBelow _                                                       = Nothing
 
 crumble::([Brick],[Brick]) -> Maybe (Int, ([Brick],[Brick]))
 crumble (bricks, removed) | null disintegrated = Nothing
